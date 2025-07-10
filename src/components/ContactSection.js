@@ -23,7 +23,7 @@ const ContactSection = () => {
       );
 
       // 2. Gửi dữ liệu về backend
-      const res = await fetch('https://inan.onrender.com/api/contact', {
+      const res = await fetch('https://word-inan.onrender.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, message }),
