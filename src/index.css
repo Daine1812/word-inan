@@ -4,91 +4,73 @@
 
 /* Custom CSS */
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #f0f2f5 0%, #e0e7ff 100%);
-  padding-top: 80px;
-  color: #333;
+  @apply font-poppins bg-gradient-to-br from-[#f0f2f5] to-[#e0e7ff] pt-20 text-gray-800;
 }
 .navbar {
-  background: linear-gradient(45deg, #2c3e50, #3498db);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  @apply bg-gradient-to-br from-[#2c3e50] to-[#3498db] shadow-lg fixed top-0 left-0 right-0 z-50 border-b border-white/10;
+  padding: 1rem 0;
 }
 .navbar-brand {
-  font-family: 'Amiri', serif;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ffd700;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-.navbar-brand:hover {
-  color: #ffffff;
-  transform: scale(1.05);
+  @apply font-amiri text-2xl font-bold text-yellow-400 shadow-[1px_1px_3px_rgba(0,0,0,0.4)] transition-transform duration-300 ease-in-out hover:text-white hover:scale-105;
 }
 .navbar-nav .nav-link {
-  color: #e0e7ff;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  font-size: 1.1rem;
-  padding: 10px 15px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-.navbar-nav .nav-link:hover {
-  color: #ffd700;
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  @apply text-gray-100 font-poppins font-medium text-base p-2.5 rounded-lg transition-all duration-300 ease-in-out hover:text-yellow-400 hover:bg-white/10 hover:-translate-y-0.5;
 }
 .navbar-nav .dropdown-menu {
-  background: linear-gradient(45deg, #2c3e50, #34495e);
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  padding: 12px;
+  @apply bg-gradient-to-br from-[#2c3e50] to-[#34495e] border-none rounded-xl shadow-lg p-3;
 }
 .navbar-nav .dropdown-item {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem;
-  color: #e0e7ff;
-  padding: 10px 15px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-.navbar-nav .dropdown-item:hover {
-  background: linear-gradient(45deg, #3498db, #2980b9);
-  color: #ffd700;
-  transform: translateX(5px);
+  @apply font-poppins text-sm text-gray-100 p-2.5 rounded-lg transition-all duration-300 ease-in-out hover:bg-gradient-to-br hover:from-[#3498db] hover:to-[#2980b9] hover:text-yellow-400 hover:translate-x-1.25;
 }
 .hero-section {
+  @apply bg-gradient-to-br from-[#ff6f61] to-[#ff8c42] bg-cover bg-center p-15 text-center rounded-2xl shadow-[10px_10px_20px_rgba(0,0,0,0.2),-10px_-10px_20px_rgba(255,255,255,0.5)];
   background-image: url('https://thegioiinan.dak.edu.vn/static/images/hero-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  padding: 60px 20px;
-  text-align: center;
-  border-radius: 20px;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2), -10px -10px 20px rgba(255, 255, 255, 0.5);
 }
 .hero-section h1 {
-  font-family: 'Amiri', serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #ffd700;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  @apply font-amiri text-4xl font-bold text-yellow-400 shadow-[2px_2px_4px_rgba(0,0,0,0.3)];
 }
 .hero-section .hero-subtitle {
-  font-size: 1.2rem;
-  color: #fff;
-  margin-bottom: 20px;
+  @apply text-lg text-white mb-5;
 }
 .gradient-button {
-  background: linear-gradient(45deg, #ff4d4d, #ff8c1a);
+  @apply bg-gradient-to-br from-[#ff4d4d] to-[#ff8c1a];
 }
 .custom-shadow {
-  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.5);
+  @apply shadow-[8px_8px_15px_rgba(0,0,0,0.1),-5px_-5px_15px_rgba(255,255,255,0.5)];
+}
+.dropdown-menu.show {
+  @apply bg-gradient-to-br from-[#2c3e50] to-[#34495e] border-none rounded-xl shadow-lg p-2 mt-2.5 min-w-[230px] z-[1050];
+}
+
+.dropdown-item {
+  @apply font-poppins text-sm text-gray-100 p-2.5 transition-all duration-300 ease-in-out rounded-lg;
+}
+
+.dropdown-item:hover {
+  @apply bg-gradient-to-br from-[#3498db] to-[#2980b9] text-yellow-400 translate-x-1.25;
+}
+.custom-dropdown .dropdown-menu.show {
+  @apply bg-gradient-to-br from-[#2c3e50] to-[#34495e] rounded-xl shadow-lg p-2.5 mt-3 z-[1050];
+}
+
+.dropdown-item-custom {
+  @apply text-sm text-gray-100 p-2.5 rounded-lg transition-all duration-300 ease-in-out font-poppins;
+}
+
+.dropdown-item-custom:hover {
+  @apply bg-gradient-to-br from-[#3498db] to-[#2980b9] text-yellow-400 translate-x-1.25;
+}
+
+/* Contact Section Adjustments */
+.contact-section {
+  @apply p-12 text-center;
+}
+
+.contact-section .btn-contact {
+  @apply bg-[#ff6f61] text-white px-6 py-3 rounded-xl inline-block transition-all duration-300 ease-in-out hover:bg-[#ff8c42] mr-2.5;
+}
+
+/* Align contact buttons to the right */
+.contact-section .btn-contact-wrapper {
+  @apply flex justify-end;
 }

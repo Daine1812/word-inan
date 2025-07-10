@@ -1,10 +1,45 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import Swal from 'sweetalert2';
 
 const ContactSection = () => {
-  const handleSubmit = (e) => {
+  const form = useRef();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    Swal.fire('Thành công!', 'Yêu cầu của bạn đã được gửi.', 'success');
+
+    const formData = new FormData(form.current);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const message = formData.get("message");
+
+    try {
+      // 1. Gửi email qua EmailJS
+      await emailjs.sendForm(
+        'dai2005ne',
+        'template_kvb8qmi',
+        form.current,
+        '4lho1BsAL_XM-j7mI'
+      );
+
+      // 2. Gửi dữ liệu về backend
+      const res = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Gửi dữ liệu về server thất bại');
+      }
+
+      // 3. Thành công
+      Swal.fire('🎉 Thành công!', 'Yêu cầu của bạn đã được gửi và lưu lại.', 'success');
+      form.current.reset();
+    } catch (error) {
+      console.error('Lỗi:', error);
+      Swal.fire('❌ Lỗi!', 'Không gửi được yêu cầu. Vui lòng thử lại.', 'error');
+    }
   };
 
   return (
@@ -13,41 +48,20 @@ const ContactSection = () => {
         LIÊN HỆ VỚI CHÚNG TÔI
       </h2>
       <div className="container mx-auto">
-        <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-4">
+        <form ref={form} onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-4">
           <div>
             <label htmlFor="name" className="block text-gray-700 font-semibold">Họ và Tên</label>
-            <input
-              type="text"
-              id="name"
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff4d4d]"
-              placeholder="Nhập họ và tên"
-              required
-            />
+            <input type="text" name="name" id="name" required className="w-full p-3 border rounded-lg" />
           </div>
           <div>
             <label htmlFor="email" className="block text-gray-700 font-semibold">Email</label>
-            <input
-              type="email"
-              id="email"
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff4d4d]"
-              placeholder="Nhập email"
-              required
-            />
+            <input type="email" name="email" id="email" required className="w-full p-3 border rounded-lg" />
           </div>
           <div>
             <label htmlFor="message" className="block text-gray-700 font-semibold">Tin nhắn</label>
-            <textarea
-              id="message"
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff4d4d]"
-              rows="5"
-              placeholder="Nhập tin nhắn của bạn"
-              required
-            ></textarea>
+            <textarea name="message" id="message" rows="5" required className="w-full p-3 border rounded-lg"></textarea>
           </div>
-          <button
-            type="submit"
-            className="gradient-button text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:-translate-y-1 transition"
-          >
+          <button type="submit" className="gradient-button text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:-translate-y-1 transition">
             Gửi Yêu Cầu
           </button>
         </form>

@@ -5,18 +5,19 @@ import HeroSection from './components/HeroSection';
 import FeaturedProducts from './components/FeaturedProducts';
 import ProductMenu from './components/ProductMenu';
 import ServicesSection from './components/ServicesSection';
-import ContactSection from './components/ContactSection'; // Thêm nếu cần
+import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
 const App = () => {
   return (
     <div className="container-fluid">
       <CustomNavbar />
+      <ProductMenu />
       <HeroSection />
       <FeaturedProducts />
-      <ProductMenu />
+
       <ServicesSection />
-      <ContactSection /> {/* Thêm nếu cần */}
+      <ContactSection />
       <Footer />
     </div>
   );
