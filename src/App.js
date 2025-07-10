@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './index.css';
+import CustomNavbar from './components/Navbar';
+import HeroSection from './components/HeroSection';
+import FeaturedProducts from './components/FeaturedProducts';
+import ProductMenu from './components/ProductMenu';
+import ServicesSection from './components/ServicesSection';
+import ContactSection from './components/ContactSection'; // Thêm nếu cần
+import Footer from './components/Footer';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-fluid">
+      <CustomNavbar />
+      <HeroSection />
+      <FeaturedProducts />
+      <ProductMenu />
+      <ServicesSection />
+      <ContactSection /> {/* Thêm nếu cần */}
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
